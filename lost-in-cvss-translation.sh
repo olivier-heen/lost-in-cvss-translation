@@ -87,7 +87,7 @@ EOF
 while read LINE; do
     GRADEv2=$(echo "$LINE" | cut -d\/ -f7 | sed 's/A/10/')
     GRADEv3=$(echo "$LINE" | cut -d\/ -f17 | sed 's/A/10/')
-    python -c "if ($GRADEv3-$GRADEv2<=3.5): print('$LINE')"
+    python -c "if ($GRADEv3-$GRADEv2<=${MAXI}): print('$LINE')"
 done < learn-v2-to-v3	|\
 sed -E 's,^.* (.*)\/[0-9A]\.[0-9]//(.*).,s \1\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) \2 g;,' >> cvss-v2-to-v3.sh
 cat << EOF >> cvss-v2-to-v3.sh
@@ -112,7 +112,7 @@ EOF
 while read LINE; do
     GRADEv2=$(echo "$LINE" | cut -d\/ -f9 | sed 's/A/10/')
     GRADEv3=$(echo "$LINE" | cut -d\/ -f17 | sed 's/A/10/')
-    python3 -c "if ($GRADEv3-$GRADEv2<3): print('$LINE')"
+    python -c "if ($GRADEv3-$GRADEv2<${MAXI}): print('$LINE')"
 done < learn-v3-to-v2	|\
 #sed -E 's,^.* (.*)//(.*).,s \1 \2 g;,' >> cvss-v3-to-v2.sh
 sed -E 's,^.* (.*)\/[0-9A]\.[0-9]//(.*).,s \1\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\\/\\|\\) \2 g;,' >> cvss-v3-to-v2.sh
