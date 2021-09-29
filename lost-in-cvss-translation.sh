@@ -81,7 +81,7 @@ cat << EOF > cvss-v2-to-v3.sh
 # Generated "$(date -u)" with "$0"
 [ "\$1" = "--help" ] && echo "Usage: cvss-v2-to-v3.sh <FILE or vector>.\nReplace CVSSv2 vectors by the most often associated CVSSv3 vectors" && exit
 [ "\$#" -eq "0" ] && CMD="" || [ -f "\$1" ] && CMD="cat" || CMD="echo"
-\$CMD "\$1" | sed --sandbox "
+\$CMD \$1 | sed --sandbox "
 EOF
 # Heuristic: do not keep assciations where the grade difference exceeds a threshold (e.g. 3.5)
 while read LINE; do
@@ -107,7 +107,7 @@ cat << EOF > cvss-v3-to-v2.sh
 # Generated "$(date -u)" with "$0"
 [ "\$1" = "--help" ] && echo "Usage: cvss-v3-to-v2.sh <FILE or vector>.\nReplace CVSSv3 vectors by the most often associated CVSSv2 vectors" && exit
 [ "\$#" -eq "0" ] && CMD="" || [ -f "\$1" ] && CMD="cat" || CMD="echo"
-\$CMD "\$1" | sed --sandbox "
+\$CMD \$1 | sed --sandbox "
 EOF
 while read LINE; do
     GRADEv2=$(echo "$LINE" | cut -d\/ -f9 | sed 's/A/10/')

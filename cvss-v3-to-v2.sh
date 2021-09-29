@@ -1,8 +1,8 @@
 #!/bin/sh
-# Generated "Wed 29 Sep 2021 04:12:56 PM UTC" with "./lost-in-cvss-translation.sh"
+# Generated "Wed 29 Sep 2021 04:52:18 PM UTC" with "./lost-in-cvss-translation.sh"
 [ "$1" = "--help" ] && echo "Usage: cvss-v3-to-v2.sh <FILE or vector>.\nReplace CVSSv3 vectors by the most often associated CVSSv2 vectors" && exit
 [ "$#" -eq "0" ] && CMD="" || [ -f "$1" ] && CMD="cat" || CMD="echo"
-$CMD "$1" | sed --sandbox "
+$CMD $1 | sed --sandbox "
 s AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:H\(/[0-9]\.[0-9]\|/10\|/10\.0\|\/\|\) AV:A/AC:M/Au:S/C:C/I:C/A:C/7.4 g;
 s AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:L\(/[0-9]\.[0-9]\|/10\|/10\.0\|\/\|\) AV:A/AC:M/Au:S/C:P/I:P/A:P/4.9 g;
 s AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:N/A:N\(/[0-9]\.[0-9]\|/10\|/10\.0\|\/\|\) AV:A/AC:M/Au:S/C:C/I:N/A:N/5.2 g;
