@@ -79,9 +79,9 @@ grep -v " [0] "	 \
 cat << EOF > cvss-v2-to-v3.sh
 #!/bin/sh
 # Generated "$(date -u)" with "$0"
-[ "\$#" -ne "1" ] || [ "$1" = "--help" ] && echo "Usage: cvss-v2-to-v3.sh <FILE or vector>.\nReplace CVSSv2 vectors by their most frequently associated CVSSv3 vectors" && exit
-[ -f "\$1" ] && CMD="cat" || CMD="echo"
-\$CMD \$1 | sed --sandbox "
+[ "\$1" = "--help" ] && echo "Usage: cvss-v2-to-v3.sh <FILE or vector>.\nReplace CVSSv2 vectors by the most often associated CVSSv3 vectors" && exit
+[ "\$#" -eq "0" ] && CMD="" || [ -f "\$1" ] && CMD="cat" || CMD="echo"
+\$CMD "\$1" | sed --sandbox "
 EOF
 # Heuristic: do not keep assciations where the grade difference exceeds a threshold (e.g. 3.5)
 while read LINE; do
@@ -105,9 +105,9 @@ grep -v " [0] "	 \
 cat << EOF > cvss-v3-to-v2.sh
 #!/bin/sh
 # Generated "$(date -u)" with "$0"
-[ "\$#" -ne "1" ] || [ "$1" = "--help" ] && echo "Usage: cvss-v3-to-v2.sh <FILE or vector>.\nReplace CVSSv3 vectors by their most frequently associated CVSSv2 vectors" && exit
-[ -f "\$1" ] && CMD="cat" || CMD="echo"
-\$CMD \$1 | sed --sandbox "
+[ "\$1" = "--help" ] && echo "Usage: cvss-v3-to-v2.sh <FILE or vector>.\nReplace CVSSv3 vectors by the most often associated CVSSv2 vectors" && exit
+[ "\$#" -eq "0" ] && CMD="" || [ -f "\$1" ] && CMD="cat" || CMD="echo"
+\$CMD "\$1" | sed --sandbox "
 EOF
 while read LINE; do
     GRADEv2=$(echo "$LINE" | cut -d\/ -f9 | sed 's/A/10/')
@@ -122,7 +122,7 @@ s AV:./AC:./PR:./UI:./S:./C:./I:./A:.\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) 
 EOF
 echo
 
-popd
+echo -n "The translators are available as: "
+popd >& /dev/null
 cp ${WDIR}/cvss-v?-to-v?.sh .
-echo "The translators are available now:"
 ls cvss-v?-to-v?.sh
