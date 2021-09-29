@@ -27,8 +27,8 @@ The translation relation may not be an involution.
 No difference is made among CVSSv3.0 and CVSSv3.1.
 
 # Prerequisites
-``lost-in-cvss-translation.sh`` needs bash, wget, jq and python.
-``cvss-v2-to-v3.sh`` and ``cvss-v3-to-v2.sh`` are regular sh scripts.
+- ``lost-in-cvss-translation.sh`` needs bash, wget, jq and python.
+- ``cvss-v2-to-v3.sh`` and ``cvss-v3-to-v2.sh`` are regular sh scripts.
 
 # TODO
 Discard the associations where the grade is too different before computing the most frequent associations.
