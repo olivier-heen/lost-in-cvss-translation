@@ -1,15 +1,15 @@
 # Lost in CVSS translation
-```$ ./cvss-v2-to-v3.sh 'CVSSv3 for CVE-2010-0840: AV:N/AC:L/Au:N/C:P/I:P/A:P/7.5'```
-
-```CVSSv3 for CVE-2010-0840: AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/9.8```
+### $ ./cvss-v2-to-v3.sh 'CVSSv3 for CVE-2010-0840: AV:N/AC:L/Au:N/C:P/I:P/A:P/7.5'
+### CVSSv3 for CVE-2010-0840: AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/9.8
 
 CVSSv2 to CVSSv3 translation is a difficult task.
-While plain learning based methods already exist,
-I propose another approach only based on vectors.
-A CVSSv2 vector is translated in the CVSSv3 that:
-i) Is the most frequently associated according to NVD databases,
-and ii) Keeps the grade difference below a given threshold (such as 3.5).
-If no such vector exists, the translation fails.
+In the example above, no CVSSv3 is known for CVE-2010-0840.
+How to automatically propose a decent solution, that an expert may later review?
+While plain learning based solution start to appear, I propose another approach only based on vectors.
+With this approach a CVSSv2 vector is translated in the CVSSv3 that:
+i) Is the most frequently associated in the NVD databases, and 
+ii) Keeps the grade difference below a given threshold (such as 3.5).
+If no such vector exists the translation fails.
 
 # Tools
 - ``lost-in-cvss-translation.sh`` Generate the translators from NVD data.
