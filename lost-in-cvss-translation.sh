@@ -89,9 +89,9 @@ while read LINE; do
     GRADEv3=$(echo "$LINE" | cut -d\/ -f17 | sed 's/A/10/')
     python -c "if ($GRADEv3-$GRADEv2<=3.5): print('$LINE')"
 done < learn-v2-to-v3	|\
-sed -E 's,^.* (.*)\/[0-9A]\.[0-9]//(.*).,s \1\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) \2 ;,' >> cvss-v2-to-v3.sh
+sed -E 's,^.* (.*)\/[0-9A]\.[0-9]//(.*).,s \1\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) \2 g;,' >> cvss-v2-to-v3.sh
 cat << EOF >> cvss-v2-to-v3.sh
-s AV:./AC:./Au:./C:./I:./A:.\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) unknown-cvss ;
+s AV:./AC:./Au:./C:./I:./A:.\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) unknown-cvss g;
 "
 EOF
 echo
@@ -114,15 +114,15 @@ while read LINE; do
     GRADEv3=$(echo "$LINE" | cut -d\/ -f17 | sed 's/A/10/')
     python3 -c "if ($GRADEv3-$GRADEv2<3): print('$LINE')"
 done < learn-v3-to-v2	|\
-#sed -E 's,^.* (.*)//(.*).,s \1 \2 ;,' >> cvss-v3-to-v2.sh
-sed -E 's,^.* (.*)\/[0-9A]\.[0-9]//(.*).,s \1\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\\/\\|\\) \2 ;,' >> cvss-v3-to-v2.sh
+#sed -E 's,^.* (.*)//(.*).,s \1 \2 g;,' >> cvss-v3-to-v2.sh
+sed -E 's,^.* (.*)\/[0-9A]\.[0-9]//(.*).,s \1\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\\/\\|\\) \2 g;,' >> cvss-v3-to-v2.sh
 cat << EOF >> cvss-v3-to-v2.sh
-s AV:./AC:./PR:./UI:./S:./C:./I:./A:.\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) unknown-cvss ;
+s AV:./AC:./PR:./UI:./S:./C:./I:./A:.\\(\/[0-9]\\.[0-9]\\|\/10\\|\/10\\.0\\|\\) unknown-cvss g;
 "
 EOF
 echo
 
 popd
 cp ${WDIR}/cvss-v?-to-v?.sh .
-echo -n "Generation complete, results are:"
+echo "The translators are available now:"
 ls cvss-v?-to-v?.sh
