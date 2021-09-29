@@ -14,9 +14,9 @@ If no such vector exists, the translation fails.
 - ``cvss-v3-to-v2.sh`` Inverse translator e.g., for backward comparisons.
 
 # Examples
-- ```cvss-v2-to-v3.sh AV:L/AC:H/Au:N/C:C/I:C/A:C/6.2             \# Input from line```
-- ```./cvss-v2-to-v3.sh test/test-cvss-v2-to-v3-data.txt         \# Input from file```
-- ```echo "AV:L/AC:H/Au:N/C:C/I:C/A:C/6.2" | ./cvss-v2-to-v3.sh  \# Input from pipe```
+- ```cvss-v2-to-v3.sh AV:L/AC:H/Au:N/C:C/I:C/A:C/6.2```            Input from line.
+- ```./cvss-v2-to-v3.sh test/test-cvss-v2-to-v3-data.txt```        Input from file.
+- ```echo "AV:L/AC:H/Au:N/C:C/I:C/A:C/6.2" | ./cvss-v2-to-v3.sh``` Input from pipe.
 
 # Disclaimer
 The translators only provide a consultative advice,
