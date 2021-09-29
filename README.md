@@ -1,11 +1,12 @@
 # Lost in CVSS translation
+## ```./cvss-v2-to-v3.sh 'Proposed CVSSv3 score for CVE-2010-0840: AV:N/AC:L/Au:N/C:P/I:P/A:P/7.5'```
+
 CVSSv2 to CVSSv3 translation is a difficult task.
 While plain learning based methods already exist,
 I propose another approach only based on vectors.
 A CVSSv2 vector is translated in the CVSSv3 that:
-1. Is the most frequently associated according to NVD databases.
-2. Keeps the grade difference below a given threshold, like 3.5.
-
+1) Is the most frequently associated according to NVD databases,
+and 2) Keeps the grade difference below a given threshold (such as 3.5).
 If no such vector exists, the translation fails.
 
 # Tools
