@@ -11,12 +11,13 @@ If no such vector exists, the translation fails.
 # Tools
 - ``lost-in-cvss-translation.sh`` Generate the translators from NVD data.
 - ``cvss-v2-to-v3.sh`` CVSSv2 to CVSSv3 translator, more info with --help.
-- ``cvss-v3-to-v2.sh`` Inverse translator e.g., for backward comparisons.
+- ``cvss-v3-to-v2.sh`` Backward translator.
 
 # Examples
-- ```cvss-v2-to-v3.sh AV:L/AC:H/Au:N/C:C/I:C/A:C/6.2```            Input from line.
+- ```./cvss-v2-to-v3.sh AV:L/AC:H/Au:N/C:C/I:C/A:C/6.2```          Input from line.
 - ```./cvss-v2-to-v3.sh test/test-cvss-v2-to-v3-data.txt```        Input from file.
 - ```echo "AV:L/AC:H/Au:N/C:C/I:C/A:C/6.2" | ./cvss-v2-to-v3.sh``` Input from pipe.
+- ```./cvss-v3-to-v2.sh AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/7.8``` Backward translation.
 
 # Disclaimer
 The translators only provide a consultative advice,
