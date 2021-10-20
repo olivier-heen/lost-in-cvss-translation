@@ -11,7 +11,7 @@ How to automatically propose a decent solution, that an expert may later review?
 While plain learning based solution start to appear, I propose another approach only based on vectors.
 With this approach, a CVSSv2 vector is translated in the CVSSv3 that:
 i) Is the most frequently associated in the NVD databases, and 
-ii) Keeps the grade difference below a given threshold (such as 3.5).
+ii) Keeps the score difference below a given threshold (such as 3.5).
 If no such vector exists the translation fails.
 
 # Tools
@@ -36,6 +36,6 @@ No difference is made among CVSSv3.0 and CVSSv3.1.
 - ``cvss-conv.sh`` is a regular sh script.
 
 # TODO
-Discard the associations where the grade is too different before computing the most frequent associations.
-When several candidate associations exist, peek one according to a heuristic: either minimize the grade difference or minimize the vector "distance".
+Discard the associations where the score is too different before computing the most frequent associations.
+When several candidate associations exist, peek one according to a heuristic: either minimize the score difference or minimize the vector "distance".
 
