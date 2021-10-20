@@ -8,7 +8,8 @@ CVE-2010-0840: AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/9.8
 CVSSv2 to CVSSv3 translation is a difficult task.
 In the example above, no CVSSv3 is known for CVE-2010-0840.
 How to automatically propose a decent solution, that an expert may later review?
-While plain learning based solution start to appear, I propose another approach only based on vectors.
+While plain learning based solution start to appear, see references,
+I propose another approach only based on vectors (lower perf. but less info. needed).
 With this approach, a CVSSv2 vector is translated in the CVSSv3 that:
 i) Is the most frequently associated in the NVD databases, and 
 ii) Keeps the score difference below a given threshold (such as 3.5).
@@ -39,3 +40,7 @@ No difference is made among CVSSv3.0 and CVSSv3.1.
 Discard the associations where the score is too different before computing the most frequent associations.
 When several candidate associations exist, peek one according to a heuristic: either minimize the score difference or minimize the vector "distance".
 
+# References
+- Conversion of CVSS Base Score from 2.0 to 3.1 https://ieeexplore.ieee.org/document/9559092
+- Machine Learning Algorithms for Conversion of CVSS Base Score from 2.0 to 3.x	https://link.springer.com/chapter/10.1007/978-3-030-77967-2_21
+- Fighting n-day vulnerabilities with autom. CVSS vector prediction https://dl.acm.org/doi/10.1145/3407023.3407038
