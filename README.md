@@ -37,8 +37,9 @@ No difference is made among CVSSv3.0 and CVSSv3.1.
 - ``cvss-conv.sh`` is a regular sh script.
 
 # TODO
-Discard the associations where the score is too different before computing the most frequent associations.
-When several candidate associations exist, peek one according to a heuristic: either minimize the score difference or minimize the vector "distance".
+- Apply the heuristic on score difference before computing the most frequent associations.
+- When several candidate associations exist, peek one according to a heuristic: either minimize the score difference or minimize the vector "Hamming distance" (sort of).
+- Tighten the pattern for unknown-cvss-vx vectors. For the momment a string like AV:X/AC:Y/Au:Z/C:1/I:2/A:3 is accepted (and should not).
 
 # References
 - Conversion of CVSS Base Score from 2.0 to 3.1 https://ieeexplore.ieee.org/document/9559092
