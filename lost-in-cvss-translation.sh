@@ -1,15 +1,14 @@
 #!/bin/bash
 
 HELP='
-lost-in-cvss-translation-2.sh [ -h | --help ]
-Generate CVSS translation script cvss-conv.sh
-The generation can take several minutes.
-Temporary files in /tmp are not erased.
-wget, jq and python are needed.
+lost-in-cvss-translation-2.sh [ -h | --help ] <tmp>
+Generate CVSS translation script cvss-conv.sh from the NVD data.
+The working directory is <tmp> is created (or reused).
+The generation can take several minutes.  wget, jq and python are needed.
 '
-VERS='v2.0 2021-10'
+VERS='v2.0 2022-09'
 COPY='Olivier HEEN'
-MAXI='3.5' # Maximum tolerated CVSSv2/CVSSv3 grade difference.
+MAXI='8.0' # Maximum tolerated CVSSv2/CVSSv3 grade difference.
 
 # Parse and help
 [ "$1" = "-h" ] || [ "$1" = "--help" ] && echo "${HELP}" && exit
@@ -18,7 +17,7 @@ MAXI='3.5' # Maximum tolerated CVSSv2/CVSSv3 grade difference.
 pushd "/tmp" >& /dev/null
 
 echo -n "Downloading the data-sets for years 20"
-for YEAR in $(seq -w 02 21); do
+for YEAR in $(seq -w 02 22); do
     FILE="nvdcve-1.1-20${YEAR}.json"
     if [ ! -f "${FILE}" ]; then
         wget -q "https://nvd.nist.gov/feeds/json/cve/1.1/${FILE}.zip"
